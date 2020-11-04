@@ -34,6 +34,16 @@ module.exports.create = function create (auth, org, repo, data, options, callbac
   ghutils.ghpost(auth, url, data, options, callback)
 }
 
+module.exports.update = function update (auth, org, repo, data, options, callback) {
+  if (typeof options == 'function') {
+    callback = options
+    options  = {}
+  }
+
+  var url = 'https://api.github.com/repos/' + org + '/' + repo + '/issues/' + data.num
+
+  ghutils.ghpost(auth, url, data, options, callback)
+}
 
 module.exports.listComments = function listComments (auth, org, repo, num, options, callback) {
   if (typeof options == 'function') {
